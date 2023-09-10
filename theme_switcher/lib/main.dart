@@ -16,18 +16,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
       create: (context) => ThemeBloc(),
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) {
-          return MaterialApp(
+      child: MaterialApp(
             title: 'Flutter Theme Demo',
             debugShowCheckedModeBanner: false,
-            theme: state.appTheme == Apptheme.light
+            theme: context.watch<ThemeBloc>().state.appTheme == Apptheme.light
                 ? ThemeData.light()
                 : ThemeData.dark(),
             home: const MyHomePage(),
-          );
-        },
-      ),
+          )
     );
   }
 }
